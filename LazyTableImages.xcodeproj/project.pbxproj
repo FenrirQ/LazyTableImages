@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		FF2E241C1E7FF3F50049A5C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E241B1E7FF3F50049A5C5 /* AppDelegate.swift */; };
-		FF2E241E1E7FF3F50049A5C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E241D1E7FF3F50049A5C5 /* ViewController.swift */; };
 		FF2E24211E7FF3F50049A5C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF2E241F1E7FF3F50049A5C5 /* Main.storyboard */; };
 		FF2E24241E7FF3F50049A5C5 /* LazyTableImages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF2E24221E7FF3F50049A5C5 /* LazyTableImages.xcdatamodeld */; };
-		FF2E24261E7FF3F50049A5C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2E24251E7FF3F50049A5C5 /* Assets.xcassets */; };
 		FF2E24291E7FF3F50049A5C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF2E24271E7FF3F50049A5C5 /* LaunchScreen.storyboard */; };
+		FF2E24311E7FF4360049A5C5 /* AppRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E24301E7FF4360049A5C5 /* AppRecord.swift */; };
+		FF2E24331E7FF49E0049A5C5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E24321E7FF49E0049A5C5 /* RootViewController.swift */; };
+		FF2E24351E7FF60A0049A5C5 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E24341E7FF60A0049A5C5 /* DataServices.swift */; };
+		FF2E24371E7FF9060049A5C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2E24361E7FF9060049A5C5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FF2E24181E7FF3F50049A5C5 /* LazyTableImages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyTableImages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2E241B1E7FF3F50049A5C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF2E241D1E7FF3F50049A5C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FF2E24201E7FF3F50049A5C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF2E24231E7FF3F50049A5C5 /* LazyTableImages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LazyTableImages.xcdatamodel; sourceTree = "<group>"; };
-		FF2E24251E7FF3F50049A5C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF2E24281E7FF3F50049A5C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF2E242A1E7FF3F50049A5C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF2E24301E7FF4360049A5C5 /* AppRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRecord.swift; sourceTree = "<group>"; };
+		FF2E24321E7FF49E0049A5C5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		FF2E24341E7FF60A0049A5C5 /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
+		FF2E24361E7FF9060049A5C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +61,40 @@
 			isa = PBXGroup;
 			children = (
 				FF2E241B1E7FF3F50049A5C5 /* AppDelegate.swift */,
-				FF2E241D1E7FF3F50049A5C5 /* ViewController.swift */,
+				FF2E24381E7FF9460049A5C5 /* Services */,
+				FF2E24391E7FF9510049A5C5 /* Model */,
+				FF2E243A1E7FF95A0049A5C5 /* Controller */,
 				FF2E241F1E7FF3F50049A5C5 /* Main.storyboard */,
-				FF2E24251E7FF3F50049A5C5 /* Assets.xcassets */,
+				FF2E24361E7FF9060049A5C5 /* Assets.xcassets */,
 				FF2E24271E7FF3F50049A5C5 /* LaunchScreen.storyboard */,
 				FF2E242A1E7FF3F50049A5C5 /* Info.plist */,
 				FF2E24221E7FF3F50049A5C5 /* LazyTableImages.xcdatamodeld */,
 			);
 			path = LazyTableImages;
+			sourceTree = "<group>";
+		};
+		FF2E24381E7FF9460049A5C5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E24341E7FF60A0049A5C5 /* DataServices.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		FF2E24391E7FF9510049A5C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E24301E7FF4360049A5C5 /* AppRecord.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FF2E243A1E7FF95A0049A5C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E24321E7FF49E0049A5C5 /* RootViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF2E24291E7FF3F50049A5C5 /* LaunchScreen.storyboard in Resources */,
-				FF2E24261E7FF3F50049A5C5 /* Assets.xcassets in Resources */,
+				FF2E24371E7FF9060049A5C5 /* Assets.xcassets in Resources */,
 				FF2E24211E7FF3F50049A5C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,8 +170,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF2E241E1E7FF3F50049A5C5 /* ViewController.swift in Sources */,
+				FF2E24331E7FF49E0049A5C5 /* RootViewController.swift in Sources */,
 				FF2E24241E7FF3F50049A5C5 /* LazyTableImages.xcdatamodeld in Sources */,
+				FF2E24351E7FF60A0049A5C5 /* DataServices.swift in Sources */,
+				FF2E24311E7FF4360049A5C5 /* AppRecord.swift in Sources */,
 				FF2E241C1E7FF3F50049A5C5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
