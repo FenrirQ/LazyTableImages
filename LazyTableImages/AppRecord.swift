@@ -8,10 +8,9 @@
 
 import Foundation
 
-
 class AppRecord {
     var appName: String = "App Name"
-    var appIcon: Data?
+    var appIconData: Data?
     var artist: String = "Artist"
     var imageURLString: String?
     var appURLString: String?

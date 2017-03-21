@@ -64,8 +64,8 @@ class RootViewController: UITableViewController {
         let appRecord = DataServices.shared.entries[indexPath.row]
         cell.detailTextLabel?.text = appRecord.artist
         cell.textLabel?.text = appRecord.appName
-        if (appRecord.appIcon != nil) {
-            cell.imageView?.image = appRecord.appIcon!
+        if (appRecord.appIconData != nil) {
+            cell.imageView?.image = UIImage(data: appRecord.appIconData!)
         } else {
             cell.imageView?.image = UIImage(named: "Placeholder.png")
         }
