@@ -29,7 +29,9 @@ class RootViewController: UITableViewController {
     }
     
     func handleNotification(_ notification: Notification) {
-        tableView.reloadData()
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
 
 

@@ -6,12 +6,12 @@
 //  Copyright © 2017 Trương Thắng. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 
 class AppRecord {
     var appName: String = "App Name"
-    var appIcon: UIImage?
+    var appIcon: Data?
     var artist: String = "Artist"
     var imageURLString: String?
     var appURLString: String?
