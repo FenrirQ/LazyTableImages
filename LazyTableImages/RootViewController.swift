@@ -39,9 +39,6 @@ class RootViewController: UITableViewController {
         }
     }
     
-    
-    
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,7 +64,7 @@ class RootViewController: UITableViewController {
         cell.detailTextLabel?.text = appRecord.artist
         cell.textLabel?.text = appRecord.appName
         if (appRecord.appIconData != nil) {
-            cell.imageView?.image = UIImage(data: appRecord.appIconData!)
+            cell.imageView?.image = UIImage(data: appRecord.appIconData!)?.cropIfNeed(aspectFillToSize: appIconSize)
         } else {
             self.startDownloadIcon(for: appRecord, at: indexPath)
             cell.imageView?.image = UIImage(named: "Placeholder.png")
@@ -87,7 +84,7 @@ class RootViewController: UITableViewController {
             iconDowloader?.appRecord = appRecord
             iconDowloader?.completionHandler = {[unowned self] in
                 let cell = self.tableView.cellForRow(at: indexPath)
-                guard let appIconData = appRecord.appIconData, let image = UIImage(data: appIconData)else {
+                guard let appIconData = appRecord.appIconData, let image = UIImage(data: appIconData)?.cropIfNeed(aspectFillToSize: self.appIconSize) else {
                     return
                 }
                 cell?.imageView?.image = image
@@ -95,9 +92,30 @@ class RootViewController: UITableViewController {
             imageDownloadsInProgress[indexPath.row] = iconDowloader
         }
         iconDowloader?.startDownload()
-        
     }
-    
 }
+
+// MARK: - Crop Image Aspect Fill
+
+extension UIImage {
+    func cropIfNeed(aspectFillToSize size: CGSize) -> UIImage? {
+        guard self.size != size else {return self}
+        UIGraphicsBeginImageContextWithOptions(size, false , 0.0)
+        let rect = CGRect(origin: CGPoint.zero, size: size)
+        self.draw(in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
+// MARK: - CGSize compaire
+
+extension CGSize {
+    static func != (first: CGSize, second: CGSize) -> Bool {
+        return first.width != second.width || first.height != second.height
+    }
+}
+
 
 
