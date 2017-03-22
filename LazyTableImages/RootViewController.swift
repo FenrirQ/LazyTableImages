@@ -9,15 +9,20 @@
 import UIKit
 
 class RootViewController: UITableViewController {
-
+    var imageDownloadsInProgress : Dictionary<Int,IconDownloader> = [:]
+    let appIconSize = CGSize(width: 48, height: 48)
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNotification()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     func registerNotification() {
@@ -33,20 +38,17 @@ class RootViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+    
+    
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return DataServices.shared.entries.count
@@ -60,62 +62,42 @@ class RootViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID.lazyTableCell, for: indexPath)
-
+        
         let appRecord = DataServices.shared.entries[indexPath.row]
         cell.detailTextLabel?.text = appRecord.artist
         cell.textLabel?.text = appRecord.appName
         if (appRecord.appIconData != nil) {
             cell.imageView?.image = UIImage(data: appRecord.appIconData!)
         } else {
+            self.startDownloadIcon(for: appRecord, at: indexPath)
             cell.imageView?.image = UIImage(named: "Placeholder.png")
         }
-
+        
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func startDownloadIcon(for appRecord: AppRecord, at indexPath: IndexPath) {
+        
+        // Nếu iconDownloader đã có rồi thì dùng luôn.
+        // Chưa có thì khởi tạo cho lần sau dùng lại
+        
+        var iconDowloader = imageDownloadsInProgress[indexPath.row]
+        if iconDowloader == nil {
+            iconDowloader = IconDownloader()
+            iconDowloader?.appRecord = appRecord
+            iconDowloader?.completionHandler = {[unowned self] in
+                let cell = self.tableView.cellForRow(at: indexPath)
+                guard let appIconData = appRecord.appIconData, let image = UIImage(data: appIconData)else {
+                    return
+                }
+                cell?.imageView?.image = image
+            }
+            imageDownloadsInProgress[indexPath.row] = iconDowloader
+        }
+        iconDowloader?.startDownload()
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
+
+
