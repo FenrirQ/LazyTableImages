@@ -23,6 +23,17 @@ class RootViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        terminateAllDownload()
+
+    }
+    
+    func terminateAllDownload() {
+        
+        // dừng lại tất cả các connection đang pending
+        
+        let allDownloads = imageDownloadsInProgress.values
+        allDownloads.forEach {$0.cancelDownload()}
+        imageDownloadsInProgress.removeAll()
     }
     
     func registerNotification() {
@@ -31,6 +42,7 @@ class RootViewController: UITableViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        terminateAllDownload()
     }
     
     func handleNotification(_ notification: Notification) {
