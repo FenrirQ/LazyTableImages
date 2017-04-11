@@ -78,7 +78,9 @@ class RootViewController: UITableViewController {
         if (appRecord.appIconData != nil) {
             cell.imageView?.image = UIImage(data: appRecord.appIconData!)?.cropIfNeed(aspectFillToSize: appIconSize)
         } else {
-            self.startDownloadIcon(for: appRecord, at: indexPath)
+            if (self.tableView.isDragging == false && self.tableView.isDecelerating == false) {
+                self.startDownloadIcon(for: appRecord, at: indexPath)
+            }
             cell.imageView?.image = UIImage(named: "Placeholder.png")
         }
         
@@ -104,6 +106,30 @@ class RootViewController: UITableViewController {
             imageDownloadsInProgress[indexPath.row] = iconDowloader
         }
         iconDowloader?.startDownload()
+    }
+    func loadImagesForOnscreenRows() {
+        guard DataServices.shared.entries.count > 0 else {return}
+        let visiblePaths = tableView.indexPathsForVisibleRows
+        visiblePaths?.forEach {[unowned self] indexPath in
+            let appRecord = DataServices.shared.entries[indexPath.row]
+            if appRecord.imageURLString != nil {
+                self.startDownloadIcon(for: appRecord, at: indexPath)
+            }
+        }
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension RootViewController {
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            loadImagesForOnscreenRows()
+        }
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        loadImagesForOnscreenRows()
     }
 }
 
