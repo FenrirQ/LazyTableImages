@@ -24,7 +24,7 @@ class RootViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         terminateAllDownload()
-
+        Cache.images.removeAllObjects()
     }
     
     func terminateAllDownload() {
@@ -76,7 +76,15 @@ class RootViewController: UITableViewController {
         cell.detailTextLabel?.text = appRecord.artist
         cell.textLabel?.text = appRecord.appName
         if (appRecord.appIconData != nil) {
-            cell.imageView?.image = UIImage(data: appRecord.appIconData!)?.cropIfNeed(aspectFillToSize: appIconSize)
+            if let image = Cache.images.object(forKey: "\(appRecord.imageURLString ?? "" )" as NSString) as? UIImage {
+                cell.imageView?.image = image
+            } else {
+                if let image  = UIImage(data: appRecord.appIconData!)?.cropIfNeed(aspectFillToSize: appIconSize)  {
+                    Cache.images.setObject(image, forKey: "\(appRecord.imageURLString ?? "")" as NSString)
+                    cell.imageView?.image = image
+                }
+            }
+            
         } else {
             if (self.tableView.isDragging == false && self.tableView.isDecelerating == false) {
                 self.startDownloadIcon(for: appRecord, at: indexPath)

@@ -16,6 +16,7 @@
 		FF2E24351E7FF60A0049A5C5 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E24341E7FF60A0049A5C5 /* DataServices.swift */; };
 		FF2E24371E7FF9060049A5C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2E24361E7FF9060049A5C5 /* Assets.xcassets */; };
 		FF2E243C1E80240C0049A5C5 /* ParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E243B1E80240C0049A5C5 /* ParseOperation.swift */; };
+		FF6A06A01E9CD7900094D4D2 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6A069F1E9CD7900094D4D2 /* Cache.swift */; };
 		FF8A7D731E815F3400E4DC2D /* IconDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A7D721E815F3400E4DC2D /* IconDownloader.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		FF2E24341E7FF60A0049A5C5 /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		FF2E24361E7FF9060049A5C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF2E243B1E80240C0049A5C5 /* ParseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseOperation.swift; sourceTree = "<group>"; };
+		FF6A069F1E9CD7900094D4D2 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		FF8A7D721E815F3400E4DC2D /* IconDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +85,7 @@
 				FF2E24341E7FF60A0049A5C5 /* DataServices.swift */,
 				FF2E243B1E80240C0049A5C5 /* ParseOperation.swift */,
 				FF8A7D721E815F3400E4DC2D /* IconDownloader.swift */,
+				FF6A069F1E9CD7900094D4D2 /* Cache.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			files = (
 				FF2E24331E7FF49E0049A5C5 /* RootViewController.swift in Sources */,
 				FF8A7D731E815F3400E4DC2D /* IconDownloader.swift in Sources */,
+				FF6A06A01E9CD7900094D4D2 /* Cache.swift in Sources */,
 				FF2E24241E7FF3F50049A5C5 /* LazyTableImages.xcdatamodeld in Sources */,
 				FF2E24351E7FF60A0049A5C5 /* DataServices.swift in Sources */,
 				FF2E243C1E80240C0049A5C5 /* ParseOperation.swift in Sources */,
